@@ -26,6 +26,8 @@ import likeRouter from "./routes/like.routes.js"
 import playlistRouter from "./routes/playlist.routes.js"
 import dashboardRouter from "./routes/dashboard.routes.js"
 
+import { ApiError } from "./utils/ApiError.js"
+
 //routes declaration
 app.use("/api/v1/healthcheck", healthcheckRouter)
 app.use("/api/v1/users", userRouter)
@@ -37,6 +39,24 @@ app.use("/api/v1/likes", likeRouter)
 app.use("/api/v1/playlist", playlistRouter)
 app.use("/api/v1/dashboard", dashboardRouter)
 
+// global error handler middleware
+app.use((err, req, res, next) => {
+    if (err instanceof ApiError) {
+        return res.status(err.statusCode).json({
+            statusCode: err.statusCode,
+            success: false,
+            message: err.message,
+            errors: err.errors
+        })
+    }
+    return res.status(err.statusCode || 500).json({
+        statusCode: err.statusCode || 500,
+        success: false,
+        message: err.message || "Internal Server Error",
+        errors: err.errors || []
+    })
+})
+
 // http://localhost:8000/api/v1/users/register
 
-export { app }
+export { app }
