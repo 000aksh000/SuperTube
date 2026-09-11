@@ -1,18 +1,24 @@
 {
-  "name": "chai-backend",
+  "name": "supertube",
   "version": "1.0.0",
-  "description": "a backend at chai aur code channel - youtube",
+  "description": "Backend API for SuperTube, a video-sharing platform with authentication, video management, interactions, comments, and subscriptions.",
   "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
   },
   "keywords": [
-    "javascript",
-    "backend",
-    "chai"
+    "supertube",
+    "video-platform",
+    "nodejs",
+    "express",
+    "mongodb",
+    "mongoose",
+    "jwt",
+    "rest-api",
+    "backend"
   ],
-  "author": "Hitesh Choudhary",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.0.1",
